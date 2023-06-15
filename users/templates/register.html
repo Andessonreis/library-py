@@ -6,15 +6,32 @@
 {% block 'contents' %}
 
 <div class="container">
-    <div class="row justify-content-center align-items-center">
+    <br>
+    <div class="row">
         <div class="col-md-3">
-            <!-- Coluna vazia para centralizar o elemento -->
+
         </div>
-        <div class="col-md">
-            <h1 class="text-center">Register</h1>
-        </div>
+
+            <div class="col-md">
+                <h1>Register</h1>
+                <hr>
+
+                <form method="post">
+                    <label>Name</label>
+                    <input class="form-control" type="text" placeholder="Name...">
+                    <br>
+                    <label>Email</label>
+                    <input class="form-control" type="email" placeholder="Email">
+                    <br>
+                    <label>Password</label>
+                    <input class="form-control" type="password" placeholder="password...">
+                    <input class="btn btn-info btn-md" type="submit" value="Send">
+                    <br>
+                </form>
+                
+            </div>
         <div class="col-md-3">
-            <!-- Coluna vazia para centralizar o elemento -->
+
         </div>
     </div>
 </div>
