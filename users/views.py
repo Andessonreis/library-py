@@ -31,7 +31,7 @@ def validate_login(request):
         return redirect('/auth/login/?status=1')
     elif len(user) == 1:
         request.session['user'] = user[0].id # armazenando user em uma session(var globlal)
-        return redirect('/book/home')
+        return redirect(f'/book/home')
 
 # recebendo a request dos valores na tela de register
 def validate_signup(request):
@@ -60,3 +60,8 @@ def validate_signup(request):
         return redirect("/auth/register/?status=0")
     except:
         return redirect("/auth/login/?status=4")
+
+
+def exit_user(request):
+    request.session.flush()
+    return redirect('/auth/login/')
