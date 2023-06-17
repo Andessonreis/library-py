@@ -47,8 +47,8 @@
             <h1>Register</h1>
             <hr>
 
-            <form method="post" action="{% url 'validate_signup'%}">{% csrf_token %}
-                <!--criar um token para aceitar o formulario-->
+            <form method="post" action="{% url 'validate_signup'%}">{% csrf_token %} <!--criar um token para aceitar o formulario-->
+
                 <label>Name</label>
                 <input name="name" class="form-control" type="text" placeholder="Name...">
                 <br>

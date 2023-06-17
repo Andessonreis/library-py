@@ -8,13 +8,30 @@ from hashlib import sha256
 
 
 def login(request):
-    return HttpResponse("login")
+    status = request.GET.get('status')
+    return render(request, 'login.html', {'status': status})
 
 
 def register(request):
-    status = request.GET.get('status')
-    return render(request, 'register.html', {'status': status})
+    status = request.GET.get("status")
+    return render(request, "register.html", {"status": status})
 
+
+def validate_login(request):
+    email = request.POST.get('email')
+    password = request.POST.get('password')
+
+    # session
+    password = sha256(password.encode()).hexdigest()
+
+    # veriica se o usuario existe no banco de dados
+    user = User.objects.filter(email = email).filter(password = password)
+    
+    if len(user) == 0: # user não encontrado
+        return redirect('/auth/login/?status=1')
+    elif len(user) == 1:
+        request.session['user'] = user[0].id # armazenando user em uma session(var globlal)
+        return redirect('/book/home')
 
 # recebendo a request dos valores na tela de register
 def validate_signup(request):
