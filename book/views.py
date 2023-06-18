@@ -11,3 +11,8 @@ def home(request):
         return render(request, 'home.html', {'books': books})
     else:
         return redirect('/auth/login/?status=2')
+
+
+def book_views(request, id): #passando a request + o id do livro solicitado
+    books = Books.objects.get(id = id) #pega apenas o do botao acessar
+    return render(request, 'book_views.html', {'book': books})
