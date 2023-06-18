@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from users.models import User
-from .models import Books
+from .models import Books, Book_category,Loan
 # Create your views here.
 
 def home(request):
@@ -17,7 +17,9 @@ def book_views(request, id): #passando a request + o id do livro solicitado
     if request.session.get('user'):
         books = Books.objects.get(id = id) #pega apenas o do botao acessar
         if request.session.get('user') == books.user.id:
-            return render(request, 'book_views.html', {'book': books})
+            category_book = Book_category.objects.filter(user = request.session.get('user'))
+            loans = Loan.objects.filter(book = books)
+            return render(request, 'book_views.html', {'book': books, 'category_book': category_book, 'loans': loans})
         else:
             return HttpResponse('livro não encontrado')
     return redirect('/auth/login/?status=2')

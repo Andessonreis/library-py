@@ -8,11 +8,15 @@ from hashlib import sha256
 
 
 def login(request):
+    if request.session.get('user'):
+        return redirect('/book/home/')
     status = request.GET.get('status')
     return render(request, 'login.html', {'status': status})
 
 
 def register(request):
+    if request.session.get('user'):
+        return redirect('/book/home/')
     status = request.GET.get("status")
     return render(request, "register.html", {"status": status})
 

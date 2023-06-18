@@ -1,8 +1,12 @@
 {% extends 'index.html' %}
 
 {% block 'contents' %}
-<div class="row">
 
+<div class="container">
+  <br>
+  <div class="row">
+
+  
     {% for book in books %}
     
     <div class="col-md">
@@ -30,5 +34,6 @@
         </div>
     </div>
     {% endfor %}
+</div>
 </div>
 {% endblock %}
