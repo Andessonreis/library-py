@@ -2,11 +2,25 @@
 
 {% block 'contents' %}
 
-<div style="text-align: center;" class="container"> 
-    <h1>{{book.name}}</h1>
-    <h2>{{book.author}}</h2>
-    <h3>{{book.co_author}}</h3>
-    <h4>{{book.register_date}}</h4>
+<div class="container"> 
+    <br>
+    <p>
+        <label>Book name</label>
+        <input class="form-control" type="text" value="{{book.name}}">
+    </p>
+    <p>
+        <label>Author</label>
+        <input style="width: 40%;" class="form-control" type="text" value="{{book.author}}">
+    </p>
+    <p>
+        <label>Co-author</label>
+        <input class="form-control" type="text" value="{{book.co_author}}">
+    </p>
+    <p>
+        <label>Date of registration</label>
+        <input class="form-control" type="text" value="{{book.register_date}}">
+    </p>
+
     <h5>borrowed</h5>
         {%if book.borrowed %}
 

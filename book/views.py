@@ -14,5 +14,10 @@ def home(request):
 
 
 def book_views(request, id): #passando a request + o id do livro solicitado
-    books = Books.objects.get(id = id) #pega apenas o do botao acessar
-    return render(request, 'book_views.html', {'book': books})
+    if request.session.get('user'):
+        books = Books.objects.get(id = id) #pega apenas o do botao acessar
+        if request.session.get('user') == books.user.id:
+            return render(request, 'book_views.html', {'book': books})
+        else:
+            return HttpResponse('livro não encontrado')
+    return redirect('/auth/login/?status=2')
