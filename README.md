@@ -1,4 +1,4 @@
-# Library Python + Django Project
+# Library project
 
 ![Python](https://img.shields.io/badge/Python-316192?style=for-the-badge&logo=python&logoColor=white)
 ![Django](https://img.shields.io/badge/Django-7952B3?style=for-the-badge&logo=django&logoColor=white)
@@ -23,7 +23,7 @@ This project is licensed under the MIT License. See the [LICENSE](LICENSE) file 
 
 ## Project Execution
 
-To run the Library Python + Django Project locally on your machine, follow the instructions provided below:
+To run the Project locally on your machine, follow the instructions provided below:
 
 1. Clone the repository:
 
@@ -74,7 +74,7 @@ To run the Library Python + Django Project locally on your machine, follow the i
 
 ## Installation
 
-To install the Library Python + Django Project, ensure that you have Python 3.9 or a later version installed on your system. Then, follow the steps below:
+To install the project, ensure that you have Python 3.9 or a later version installed on your system. Then, follow the steps below:
 
 1. Clone the repository:
 
@@ -103,7 +103,7 @@ To install the Library Python + Django Project, ensure that you have Python 3.9 
 
 ## Usage
 
-To use the Library Python + Django Project, follow the steps below:
+To use the Library, follow the steps below:
 
 1. Ensure that you have completed the installation instructions.
 
@@ -121,9 +121,7 @@ To use the Library Python + Django Project, follow the steps below:
 
 ## Contributing
 
-Contributions to the Library Python + Django Project are welcome! If you have any suggestions
-
-, bug reports, or would like to contribute code, please follow the [contribution guidelines](CONTRIBUTING.md).
+Contributions to the Library are welcome! If you have any suggestions, bug reports, or would like to contribute code, please contact the project creator at andessonreys@gmail.com.
 
 ## Support
 
