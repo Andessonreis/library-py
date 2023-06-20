@@ -2,13 +2,18 @@ from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from users.models import User
 from .models import Books, Book_category,Loan
+from .forms import RegisterBook
 # Create your views here.
 
 def home(request):
     if request.session.get('user'):
         user = User.objects.get(id = request.session['user'])
         books = Books.objects.filter(user = user)
-        return render(request, 'home.html', {'books': books})
+        form = RegisterBook()
+
+        return render(request, 'home.html', {'books': books, 
+                                             'user_authenticated': request.session.get('user'),
+                                             'form': form})
     else:
         return redirect('/auth/login/?status=2')
 
@@ -23,3 +28,11 @@ def book_views(request, id): #passando a request + o id do livro solicitado
         else:
             return HttpResponse('livro não encontrado')
     return redirect('/auth/login/?status=2')
+
+
+def register_book(request):
+    if request.method == 'POST':
+        forms
+
+
+
