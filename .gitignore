@@ -3,10 +3,10 @@
 *~
 __pycache__
 
-# Ignorar diretórios específicos
+# Ignorar diretórios
 venv/
 env/
 *.env
 
-# Ignorar arquivos específicos
+# Ignorar arquivos
 db.sqlite3
