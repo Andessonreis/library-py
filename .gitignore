@@ -1,0 +1,12 @@
+# Ignorar arquivos gerados automaticamente
+*.pyc
+*~
+__pycache__
+
+# Ignorar diretórios específicos
+venv/
+env/
+*.env
+
+# Ignorar arquivos específicos
+db.sqlite3
