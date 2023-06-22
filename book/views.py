@@ -10,6 +10,7 @@ def home(request):
         user = User.objects.get(id = request.session['user'])
         books = Books.objects.filter(user = user)
         form = RegisterBook()
+        
 
         return render(request, 'home.html', {'books': books, 
                                              'user_authenticated': request.session.get('user'),
@@ -32,7 +33,13 @@ def book_views(request, id): #passando a request + o id do livro solicitado
 
 def register_book(request):
     if request.method == 'POST':
-        forms
+        form = RegisterBook(request.POST)
+        #se o formulario for valido
+        if form.is_valid():
+            form.save()
+            return HttpResponse("salvo")
+        else:
+            return HttpResponse("Dados invalidos")
 
 
 

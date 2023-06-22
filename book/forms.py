@@ -9,3 +9,4 @@ class RegisterBook(forms.ModelForm):
 
     def __init__ (self, *args, **kwargs):
         super().__init__(*args, **kwargs) ## usando super para pegar a funçao da class pai e rodar jnto/basemodelforms
+        self.fields['user'].widget = forms.HiddenInput() #mudando a chave estrangeira q era select
