@@ -7,11 +7,12 @@ from .forms import RegisterBook
 
 def home(request):
     if request.session.get('user'):
-        user = User.objects.get(id = request.session['user'])
+        user = User.objects.get(id = request.session['user']) #id do user na session
         books = Books.objects.filter(user = user)
         form = RegisterBook()
+        form.fields['user'].initial = request.session['user'] #fazendo o valor inicial ser pre-definido
+        form.fields['book_category'].queryset =  Book_category.objects.filter(user = user)
         
-
         return render(request, 'home.html', {'books': books, 
                                              'user_authenticated': request.session.get('user'),
                                              'form': form})
@@ -25,7 +26,10 @@ def book_views(request, id): #passando a request + o id do livro solicitado
         if request.session.get('user') == books.user.id:
             category_book = Book_category.objects.filter(user = request.session.get('user'))
             loans = Loan.objects.filter(book = books)
-            return render(request, 'book_views.html', {'book': books, 'category_book': category_book, 'loans': loans})
+            return render(request, 'book_views.html', {'book': books, 
+                                                       'category_book': category_book, 
+                                                       'loans': loans,
+                                                       'book_id': id})
         else:
             return HttpResponse('livro não encontrado')
     return redirect('/auth/login/?status=2')
@@ -37,9 +41,12 @@ def register_book(request):
         #se o formulario for valido
         if form.is_valid():
             form.save()
-            return HttpResponse("salvo")
+            return redirect('/book/home')
         else:
             return HttpResponse("Dados invalidos")
 
 
 
+def delete_book(request,id):
+    book = Books.objects.get(id = id).delete()
+    return redirect('/book/home')
