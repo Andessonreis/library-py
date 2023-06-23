@@ -67,12 +67,14 @@
 
                         </form>
                     </div>
+
                     <!--Categoria-->
                     <div style="display: none;" id="category_book">
                         <form action="{% url 'register_category_book' %}" method="POST">
                             {% csrf_token %}
-
+                        
                             <input type="text" name="category_name" placeholder="Category Name">
+                            <input type="text" name="description" placeholder="Category description">
                             <input type="submit" class="btn btn-success" value="Register Category">
                         </form>
                     </div>
@@ -84,6 +86,7 @@
                         {% csrf_token %}
 
                         <input type="text" name="borrowed_name" placeholder="Borrowed Name">
+
                         <input type="submit" class="btn btn-success" value="Register Borrowed">
                         </form>
                     </div>
