@@ -1,6 +1,13 @@
 <!doctype html>
 <html lang="en">
 
+
+<style>
+    body {
+      background-color: #799bc0;
+    }
+  </style>
+
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -47,26 +54,24 @@
 
                 <div class="modal-body">
 
-                    <button style="margin-left: 8px;" onclick="form_view(1)" class="btn btn-info">Category</button>
-                    <button style="margin-left: 8px;" onclick="form_view(2)" class="btn btn-warnig">Book</button>
-                    <button style="margin-left: 8px;" onclick="form_view(3)" class="btn btn-primary">borrowed</button>
+                    <button style="margin-left: 8px;" onclick="form_view(1)" class="btn btn-secondary">Category</button>
+                    <button style="margin-left: 8px;" onclick="form_view(2)" class="btn btn-warning">Book</button>
+                    <button style="margin-left: 8px;" onclick="form_view(3)" class="btn btn-primary">Borrowed</button>
                     <br>
 
                     <hr>
-
-                    <!--Book-->
-                    <div style="display: none;" id="book">
-
-                        <form action="{%url 'register_book'%}" method="POST">
+                    
+                    <!-- Book -->
+                    <div id="book" style="display: none;">
+                        <form action="{% url 'register_book' %}" method="POST">
                             {% csrf_token %}
-
                             <table>
-                                {{form.as_table}}
+                                {{ form.as_table }}
                             </table>
-                            <input type="submit" class="btn btn-success" value="register">
-
+                            <button type="submit" class="btn btn-o">Register</button>
                         </form>
                     </div>
+
 
                     <!--Categoria-->
                     <div style="display: none;" id="category_book">
@@ -80,14 +85,14 @@
 
                     </div>
 
-                    <!-- Emprestimo (feito em HTML puro) -->
+                    <!-- Empréstimo (feito em HTML puro) -->
                     <div id="borrowed" style="display: none;">
                         <form id="form_loan" action="{% url 'register_loan' %}" method="POST">
                             {% csrf_token %}
                             <div class="form-group">
                                 <label for="select_name_borrowed">Username:</label>
                                 <select id="select_name_borrowed" class="form-control" name="name_borrowed">
-
+                                    <option value="">---</option>
                                     {% for user in users %}
                                     <option value="{{ user.id }}">{{ user.name }}</option>
                                     {% endfor %}
@@ -96,13 +101,14 @@
                             <div class="form-group">
                                 <label for="select_book">Book:</label>
                                 <select id="select_book" class="form-control" name="selected_book">
-
+                                    <option value="">---</option>
                                     {% for book in books %}
                                     <option value="{{ book.id }}">{{ book.name }}</option>
                                     {% endfor %}
                                 </select>
                             </div>
-                            <input type="submit" class="btn btn-success" value="Registrar Empréstimo">
+                            <br>
+                            <button type="submit" class="btn btn-success">Submit Loan</button>
                         </form>
                     </div>
 
