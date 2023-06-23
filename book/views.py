@@ -3,6 +3,8 @@ from django.http import HttpResponse
 from users.models import User
 from .models import Books, Book_category,Loan
 from .forms import RegisterBook
+from django.contrib import messages
+
 # Create your views here.
 
 #pagina de home
@@ -49,22 +51,25 @@ def register_book(request):
         else:
             return HttpResponse("Dados invalidos")
 
-#registrar a categoria do livro
+
+# registrar a categoria do livro
 def register_category_book(request):
     if request.method == 'POST':
         category_name = request.POST['category_name']
         description = request.POST['description']
         user_id = request.session.get('user')
-        
+
         if user_id:
             user = User.objects.get(id=user_id)
-            category = Book_category(user=user, name=category_name, description = description)
+            category = Book_category(user=user, name=category_name, description=description)
             category.save()
-            return redirect('/book/home')
+            messages.success(request, 'Categoria de livro registrada com sucesso!')
+            return redirect('/book/home/?status=5')
         else:
             return HttpResponse('Usuário não autenticado')
     else:
         return HttpResponse('Método inválido')
+
 
 
 # deletar um livro (Bug)

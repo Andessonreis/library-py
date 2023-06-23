@@ -33,4 +33,14 @@
   </div>
 </div>
 
+
+<!-- Verificar se há mensagem de sucesso -->
+{% if request.GET.status == '5' %}
+<div class="alert alert-success" role="alert">
+    Categoria de livro registrada com sucesso!
+</div>
+{% endif %}
+
+
+
 {% endblock %}
