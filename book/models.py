@@ -6,7 +6,7 @@ from users.models import User
 
 class Book_category(models.Model):
     name = models.CharField(max_length=30)
-    description = models.TextField()
+    description = models.CharField(max_length=100 )
     user = models.ForeignKey(User, on_delete=models.DO_NOTHING)
 
     def __str__(self) -> str:

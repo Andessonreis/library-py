@@ -53,11 +53,12 @@ def register_book(request):
 def register_category_book(request):
     if request.method == 'POST':
         category_name = request.POST['category_name']
+        description = request.POST['description']
         user_id = request.session.get('user')
         
         if user_id:
             user = User.objects.get(id=user_id)
-            category = Book_category(user=user, name=category_name)
+            category = Book_category(user=user, name=category_name, description = description)
             category.save()
             return redirect('/book/home')
         else:
