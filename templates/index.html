@@ -80,38 +80,34 @@
 
                     </div>
 
-
-                    <!--Emprestimo (feito em html puro)-->
-                    <div style="display: none;" id="borrowed">
-
-                        <form action="{%url 'register_loan' %}" method="POST">
+                    <!-- Emprestimo (feito em HTML puro) -->
+                    <div id="borrowed" style="display: none;">
+                        <form id="form_loan" action="{% url 'register_loan' %}" method="POST">
                             {% csrf_token %}
-                            <select class="form-control" name="name_borrowed">
->
-                                {%for user in users%}
+                            <div class="form-group">
+                                <label for="select_name_borrowed">Username:</label>
+                                <select id="select_name_borrowed" class="form-control" name="name_borrowed">
 
-                                    <option value="{{user.id}}">{{user.name}}</option>
+                                    {% for user in users %}
+                                    <option value="{{ user.id }}">{{ user.name }}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="select_book">Book:</label>
+                                <select id="select_book" class="form-control" name="selected_book">
 
-                                {%endfor%}
-                            </select>
-                            <br>
-
-                            <input type="text" placeholder="livro empretado" name="name_borrowed">
-                            <br>
-                            <select class="form-control" name="name_borrowed">
-
-                                {%for book in books %}
-
-                                    <option value="{{book.id}}">{{book.name}}</option>
-
-                                {%endfor%}
-                            </select>
-                            <br>
-
-
-                            <input type="submit" class="btn btn-success" value="Register Borrowed">
+                                    {% for book in books %}
+                                    <option value="{{ book.id }}">{{ book.name }}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                            <input type="submit" class="btn btn-success" value="Registrar Empréstimo">
                         </form>
                     </div>
+
+
+
 
                 </div>
             </div>
