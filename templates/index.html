@@ -51,7 +51,7 @@
                     <button style="margin-left: 8px;" onclick="form_view(2)" class="btn btn-warnig">Book</button>
                     <button style="margin-left: 8px;" onclick="form_view(3)" class="btn btn-primary">borrowed</button>
                     <br>
-                    
+
                     <hr>
 
                     <!--Book-->
@@ -72,28 +72,46 @@
                     <div style="display: none;" id="category_book">
                         <form action="{% url 'register_category_book' %}" method="POST">
                             {% csrf_token %}
-                        
+
                             <input type="text" name="category_name" placeholder="Category Name">
                             <input type="text" name="description" placeholder="Category description">
                             <input type="submit" class="btn btn-success" value="Register Category">
                         </form>
 
-                        
-    
                     </div>
 
 
-                    <!--Emprestimo-->
+                    <!--Emprestimo (feito em html puro)-->
                     <div style="display: none;" id="borrowed">
 
-                        {% csrf_token %}
+                        <form action="{%url 'register_loan' %}" method="POST">
+                            {% csrf_token %}
+                            <select class="form-control" name="name_borrowed">
+>
+                                {%for user in users%}
 
-                        <input type="text" name="borrowed_name" placeholder="Borrowed Name">
+                                    <option value="{{user.id}}">{{user.name}}</option>
 
-                        <input type="submit" class="btn btn-success" value="Register Borrowed">
+                                {%endfor%}
+                            </select>
+                            <br>
+
+                            <input type="text" placeholder="livro empretado" name="name_borrowed">
+                            <br>
+                            <select class="form-control" name="name_borrowed">
+
+                                {%for book in books %}
+
+                                    <option value="{{book.id}}">{{book.name}}</option>
+
+                                {%endfor%}
+                            </select>
+                            <br>
+
+
+                            <input type="submit" class="btn btn-success" value="Register Borrowed">
                         </form>
                     </div>
-
 
                 </div>
             </div>
