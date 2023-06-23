@@ -118,7 +118,7 @@
                 <th scope="row">{{i.name_borrowed}}</th>
                 <td>{{i.loan_date}}</td>
                 <td>{{i.return_date}}</td>
-                <td>{{ i.return_date|shows_duration_time:i.loan_date }} Days</td>
+                <td>{{i.return_date|shows_duration_time:i.loan_date}} Days</td>
             </tr>
           {% endfor %}
         </tbody>

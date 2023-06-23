@@ -91,7 +91,7 @@
                             {% csrf_token %}
                             <div class="form-group">
                                 <label for="select_name_borrowed">Username:</label>
-                                <select id="select_name_borrowed" class="form-control" name="name_borrowed">
+                                <select id="name_borrowed" class="form-control" name="name_borrowed">
                                     <option value="">---</option>
                                     {% for user in users %}
                                     <option value="{{ user.id }}">{{ user.name }}</option>
@@ -100,9 +100,9 @@
                             </div>
                             <div class="form-group">
                                 <label for="select_book">Book:</label>
-                                <select id="select_book" class="form-control" name="selected_book">
+                                <select id="selected_book" class="form-control" name="selected_book">
                                     <option value="">---</option>
-                                    {% for book in books %}
+                                    {% for book in lend_books %}
                                     <option value="{{ book.id }}">{{ book.name }}</option>
                                     {% endfor %}
                                 </select>

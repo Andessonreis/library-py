@@ -22,7 +22,9 @@ def home(request):
 
         users = User.objects.all()
 
-        return render(
+        lend_books = Books.objects.filter(user = user).filter(borrowed = False)
+
+        return render( 
             request,
             "home.html",
             {
@@ -30,6 +32,7 @@ def home(request):
                 "user_authenticated": request.session.get("user"),
                 "form": form,
                 "users": users,
+                "lend_books": lend_books,
             },
         )
     else:
@@ -102,6 +105,19 @@ def delete_book(request, id):
 
 
 #cadastrar emprestimo
-
 def register_loan(request):
-    return HttpResponse("teste")
+    if request.method == 'POST':
+        name_borrowed_id = request.POST.get('name_borrowed')
+        selected_book_id = request.POST.get('selected_book')
+
+        name_borrowed = User.objects.get(id=name_borrowed_id)
+
+        loan = Loan(name_borrowed=name_borrowed, book_id=selected_book_id)
+        loan.save()
+
+        book = Books.objects.get(id=selected_book_id)
+        book.borrowed = True
+        book.save()
+
+
+        return HttpResponse('Empréstimo realizado com sucesso')
