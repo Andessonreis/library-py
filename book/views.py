@@ -120,4 +120,4 @@ def register_loan(request):
         book.save()
 
 
-        return HttpResponse('Empréstimo realizado com sucesso')
+        return redirect("/book/home")
