@@ -19,12 +19,11 @@ def home(request):
             "user"
         ]  # fazendo o valor inicial ser pre-definido
         form.fields["book_category"].queryset = Book_category.objects.filter(user=user)
-
         users = User.objects.all()
-
         lend_books = Books.objects.filter(user = user).filter(borrowed = False)
+        all_books = books.count()
 
-        return render( 
+        return render( #enviando para o html
             request,
             "home.html",
             {
@@ -33,6 +32,7 @@ def home(request):
                 "form": form,
                 "users": users,
                 "lend_books": lend_books,
+                "all_books": all_books,
             },
         )
     else:

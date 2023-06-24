@@ -4,9 +4,9 @@
 
 <style>
     body {
-      background-color: #799bc0;
+        background-color: #799bc0;
     }
-  </style>
+</style>
 
 <head>
     <meta charset="utf-8">
@@ -23,20 +23,38 @@
                 Library
             </a>
             {% if user_authenticated %}
-            <!-- Button trigger modal -->
-            <div class="d-flex">
-                <button type="button" class="btn btn-primary mr-2" style="margin-right: 20px;" data-bs-toggle="modal"
-                    data-bs-target="#exampleModal">
-                    register
-                </button>
-                <a href="{% url 'exit_user' %}" class="btn btn-danger" style="margin-right: 10px;">exit</a>
+
+            <!--DropDown-->
+            <div class="dropdown show">
+                <a class="btn btn-info dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
+                    aria-haspopup="true" aria-expanded="false" style="margin-right: 10px;">
+                    Menu
+                    <span class="bi bi-caret-down-fill"></span>
+                </a>
+
+                <div class="dropdown-menu dropdown-menu-right" id="myDropdown" aria-labelledby="dropdownMenuLink">
+                    <button type="button" class="btn btn-primary dropdown-item " data-bs-toggle="modal"
+                        data-bs-target="#exampleModal">register</button>
+
+                    <div class="dropdown-divider"></div>
+
+                    <a class="dropdown-item">Total of books: {{all_books}}</a>
+
+                    <div class="dropdown-divider"></div>
+
+                    <a href="{% url 'exit_user' %}" class="btn btn-danger dropdown-item"
+                        style="margin-right: 10px;">exit</a>
+
+                </div>
             </div>
-            {% endif %}
-        </nav>
 
 
-        {% block 'contents' %}
-        {% endblock %}
+    </div>
+    {% endif %}
+    </nav>
+
+    {% block 'contents' %}
+    {% endblock %}
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
@@ -60,7 +78,7 @@
                     <br>
 
                     <hr>
-                    
+
                     <!-- Book -->
                     <div id="book" style="display: none;">
                         <form action="{% url 'register_book' %}" method="POST">
@@ -154,6 +172,21 @@
 
 
     </script>
+
+    <script>
+        document.getElementById("dropdownMenuLink").addEventListener("click", function () {
+            var dropdownMenu = document.getElementById("myDropdown");
+            dropdownMenu.classList.toggle("show");
+        });
+
+        window.addEventListener("click", function (event) {
+            var dropdownMenu = document.getElementById("myDropdown");
+            if (!event.target.matches(".dropdown-toggle") && !event.target.matches(".dropdown-item")) {
+                dropdownMenu.classList.remove("show");
+            }
+        });
+    </script>
+
 
 </body>
 
