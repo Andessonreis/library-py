@@ -100,9 +100,9 @@ def register_category_book(request):
 
 # deletar um livro (Bug)
 def delete_book(request, id):
-    book = Books.objects.get(id=id).delete()
+    book = Books.objects.get(id=id)
+    book.delete()
     return redirect("/book/home")
-
 
 #cadastrar emprestimo
 def register_loan(request):
