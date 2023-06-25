@@ -75,6 +75,7 @@
                     <button style="margin-left: 8px;" onclick="form_view(1)" class="btn btn-secondary">Category</button>
                     <button style="margin-left: 8px;" onclick="form_view(2)" class="btn btn-warning">Book</button>
                     <button style="margin-left: 8px;" onclick="form_view(3)" class="btn btn-primary">Borrowed</button>
+                    <button style="margin-left: 8px;" onclick="form_view(4)" class="btn btn-info">Devolution</button>
                     <br>
 
                     <hr>
@@ -130,6 +131,18 @@
                         </form>
                     </div>
 
+                    <!--Devolução-->
+                    <div id="devolution" style="display: none;">
+                        
+                        <select class="form-control">
+
+                            <option value="">teste</option>
+
+                        </select>
+
+
+                    </div>
+
 
 
 
@@ -144,6 +157,7 @@
             book = document.getElementById("book");
             category = document.getElementById("category_book");
             borrowed = document.getElementById("borrowed");
+            devolution = document.getElementById("devolution")
 
             if (v1 === 1) {
                 category.style.display = 'block'
@@ -151,20 +165,27 @@
                 //fechando os outros blocos quando abre um
                 book.style.display = 'none'
                 borrowed.style.display = 'none'
+                devolution.style.display = 'none'
             } else if (v1 === 2) {
                 book.style.display = 'block'
 
                 category.style.display = 'none'
                 borrowed.style.display = 'none'
+                devolution.style.display = 'none'
 
             } else if (v1 === 3) {
                 borrowed.style.display = 'block'
 
                 book.style.display = 'none'
-
                 category.style.display = 'none'
+                devolution.style.display = 'none'
 
+            } else if (v1 === 4) {
+                devolution.style.display = 'block'
 
+                borrowed.style.display = 'none'
+                book.style.display = 'none'
+                category.style.display = 'none'
             }
 
 

@@ -23,6 +23,8 @@ def home(request):
         lend_books = Books.objects.filter(user = user).filter(borrowed = False)
         all_books = books.count()
 
+        loaned_books = Books.objects.filter(user = user).filter(borrowed = True)
+
         return render( #enviando para o html
             request,
             "home.html",
@@ -33,6 +35,7 @@ def home(request):
                 "users": users,
                 "lend_books": lend_books,
                 "all_books": all_books,
+                "loaned_books":loaned_books,
             },
         )
     else:
