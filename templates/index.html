@@ -133,14 +133,20 @@
 
                     <!--Devolução-->
                     <div id="devolution" style="display: none;">
-                        
-                        <select class="form-control">
+                        <form action="{%url 'return_books'%}" method="POST">
+                            {%csrf_token%}
 
-                            <option value="">teste</option>
+                            <select class="form-control" name="id_book_devolution">
 
-                        </select>
+                                {% for book in loaned_books %} <!--Pegado cada livro emprestado-->
+                                    <option value="{{book.id}}">{{book.name}}</option>
+                                {% endfor %}
 
+                            </select>
+                            <br>
+                            <input type="submit" class="btn btn-warning" value="Devolution" style="color: blue;">
 
+                        </form>
                     </div>
 
 

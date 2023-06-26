@@ -4,6 +4,9 @@ from users.models import User
 from .models import Books, Book_category, Loan
 from .forms import RegisterBook
 from django.contrib import messages
+from datetime import datetime
+from django.db.models import Q
+from django.core.exceptions import ObjectDoesNotExist
 
 # Create your views here.
 
@@ -124,3 +127,22 @@ def register_loan(request):
 
 
         return redirect("/book/home")
+    
+
+def return_books(request):
+    id = request.POST.get('id_book_devolution')
+    book_devolution = Books.objects.get(id=id)
+    book_devolution.borrowed = False
+    book_devolution.save()
+
+    try:
+        # Filtra os empréstimos onde o livro é igual a book_devolution e a data de retorno é None
+        loan_return = Loan.objects.filter(Q(book=book_devolution) & Q(return_date=None)).first()
+        if loan_return:  # Se houver um empréstimo pendente, atualiza a data de retorno para a data e hora atual
+            loan_return.return_date = datetime.now()
+            loan_return.save()
+            return redirect("/book/home")
+        else:
+            return HttpResponse("Erro: Não há empréstimo pendente para este livro.")
+    except ObjectDoesNotExist:
+        return HttpResponse("Erro: Não há empréstimo pendente para este livro.")
