@@ -117,16 +117,16 @@ def register_loan(request):
         selected_book_id = request.POST.get('selected_book')
 
         name_borrowed = User.objects.get(id=name_borrowed_id)
+        selected_book = Books.objects.get(id=selected_book_id)
 
-        loan = Loan(name_borrowed=name_borrowed, book_id=selected_book_id)
+        loan = Loan(name_borrowed=name_borrowed, book=selected_book)
         loan.save()
 
-        book = Books.objects.get(id=selected_book_id)
-        book.borrowed = True
-        book.save()
-
+        selected_book.borrowed = True
+        selected_book.save()
 
         return redirect("/book/home")
+
     
 
 def return_books(request):
@@ -146,3 +146,20 @@ def return_books(request):
             return HttpResponse("Erro: Não há empréstimo pendente para este livro.")
     except ObjectDoesNotExist:
         return HttpResponse("Erro: Não há empréstimo pendente para este livro.")
+    
+
+def edit_book(request):
+    book_id = request.POST.get('book_id')
+    name_book = request.POST.get('bookName')
+    autor = request.POST.get('author')
+    co_autor = request.POST.get('coAuthor')
+
+    book = Books.objects.get(id = book_id)
+    if book.user.id == request.session['user']:
+        book.name = name_book
+        book.author = autor
+        book.co_author = co_autor
+        book.save()
+        return redirect("/book/home")
+    else:
+        return HttpResponse('Erro')

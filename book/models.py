@@ -41,7 +41,7 @@ class Loan(models.Model):
     #name_borrowed = models.CharField(max_length=50, blank=True, null=True)
     loan_date = models.DateTimeField(default=datetime.datetime.now())
     return_date = models.DateTimeField(blank=True, null=True)
-    book = models.ForeignKey(Books, on_delete=models.DO_NOTHING)
+    book = models.ForeignKey(Books, on_delete=models.CASCADE)
     evaluation = models.CharField(max_length=1, blank=True, null=True, choices=CHOICES)
 
     def  __str__(self):

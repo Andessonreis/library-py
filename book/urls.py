@@ -8,5 +8,6 @@ urlpatterns = [
     path('register_category_book', views.register_category_book, name='register_category_book'),
     path('delete_book/<int:id>', views.delete_book, name='delete_book'),
     path('register_loan', views.register_loan, name='register_loan'),
-    path('return_books', views.return_books, name='return_books')
+    path('return_books', views.return_books, name='return_books'),
+    path('edit_book', views.edit_book, name='edit_book')
 ]

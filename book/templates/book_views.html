@@ -13,21 +13,22 @@
 
 <div class="container">
     <br>
-    <form action="#" method="POST">
+    <form action="{%url 'edit_book'%}" method="POST">
         {% csrf_token %}
+        <input type="hidden" value="{{book.id}}" name="book_id">
         <h2>Book</h2>
         <hr>
         <div class="row">
             <div class="col-md-6">
                 <div class="form-group">
                     <label for="bookName">Book Name</label>
-                    <input id="bookName" class="form-control" type="text" value="{{ book.name }}">
+                    <input id="bookName" class="form-control" type="text" value="{{ book.name }}"name="bookName">
                 </div>
             </div>
             <div class="col-md-6">
                 <div class="form-group">
                     <label for="author">Author</label>
-                    <input id="author" class="form-control" type="text" value="{{ book.author }}">
+                    <input id="author" class="form-control" type="text" value="{{ book.author }}" name="author">
                 </div>
             </div>
         </div>
@@ -36,39 +37,46 @@
             <div class="col-md-6">
                 <div class="form-group">
                     <label for="coAuthor">Co-author</label>
-                    <input id="coAuthor" class="form-control" type="text" value="{{ book.co_author }}">
+                    <input id="coAuthor" class="form-control" type="text" value="{{ book.co_author }}" name="coAuthor">
                 </div>
             </div>
+
+            <div class="form-group">
+                <label for="bookCategory">Book Category</label>
+                <select style="width: 20%;" id="bookCategory" class="form-control" name="book_category">
+                    {% for category in category_book %}
+                    {% if book.book_category.name == category.name %}
+                    <option selected>{{ category }}</option>
+                    {% else %}
+                    <option>{{ category }}</option>
+                    {% endif %}
+                    {% endfor %}
+                </select>
+            </div>
+
+
             <div class="col-md-6">
                 <div class="form-group">
                     <label for="registrationDate">Date of Registration</label>
-                    <input id="registrationDate" class="form-control" type="text" value="{{ book.register_date }}">
+                    <input id="registrationDate" class="form-control" type="text" value="{{ book.register_date }}" readonly>
                 </div>
             </div>
-        </div>
+            
+            <div class="form-group">
+                <div class="form-check">
+                    <input {% if book.borrowed %}checked {% endif %}class="form-check-input" type="checkbox" id="borrowed" name="borrowed" disabled>
+                    <label class="form-check-label" for="borrowed">
+                        {% if book.borrowed %}
+                        <span class="badge badge-success">Borrowed</span>
+                        {% else %}
+                        <span class="badge badge-secondary">Not Borrowed</span>
+                        {% endif %}
+                    </label>
+                </div>
+                <br>
+            </div>            
 
-        <div class="form-group">
-            <label for="bookCategory">Book Category</label>
-            <select style="width: 20%;" id="bookCategory" class="form-control" name="book_category">
-                {% for category in category_book %}
-                {% if book.book_category.name == category.name %}
-                <option selected>{{ category }}</option>
-                {% else %}
-                <option>{{ category }}</option>
-                {% endif %}
-                {% endfor %}
-            </select>
-        </div>
 
-        <div class="form-group">
-            <div class="form-check">
-                <input {% if book.borrowed %}checked {% endif %}class="form-check-input" type="checkbox" id="borrowed"
-                    name="borrowed">
-                <label class="form-check-label" for="borrowed">
-                    Borrowed
-                </label>
-            </div>
-        </div>
 
         <div class="form-group">
             <!-- Botão de exclusão do livro -->
@@ -76,7 +84,9 @@
 
             <!-- Botão de voltar -->
             <a href="{% url 'home' %}" type="button" class="btn btn-secondary">Back to List</a>
-            <button type="submit" class="btn btn-success">Save Changes</button>
+
+            <button type="submit" class="btn btn-success">Save book</button>
+
         </div>
     </form>
     <hr>
