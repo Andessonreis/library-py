@@ -82,14 +82,41 @@
 
                     <!-- Book -->
                     <div id="book" style="display: none;">
-                        <form action="{% url 'register_book' %}" method="POST">
+                        <form action="{% url 'register_book' %}" method="POST" enctype="multipart/form-data"
+                            class="book-form">
                             {% csrf_token %}
-                            <table>
-                                {{ form.as_table }}
-                            </table>
-                            <button type="submit" class="btn btn-o">Register</button>
+                            <div class="form-row">
+                                <div class="col-md-6 form-group">
+                                    <label for="id_name">Name:</label>
+                                    {{ form.name }}
+                                </div>
+                                <div class="col-md-6 form-group">
+                                    <label for="id_author">Author:</label>
+                                    {{ form.author }}
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="col-md-6 form-group">
+                                    <label for="id_co_author">Co-Author:</label>
+                                    {{ form.co_author }}
+                                </div>
+                                <div class="col-md-6 form-group">
+                                    <label for="id_img">Book Cover:</label>
+                                    {{ form.img }}
+                                </div>
+                            </div>
+                            <br>
+                            <div class="form-row">
+                                <div class="col-md-6 form-group">
+                                    <label for="id_book_category">Category:</label>
+                                    {{ form.book_category }}
+                                </div>
+                            </div>
+                            <br>
+                            <button type="submit" class="btn btn-primary">Register</button>
                         </form>
                     </div>
+
 
 
                     <!--Categoria-->
@@ -139,7 +166,7 @@
                             <select class="form-control" name="id_book_devolution">
 
                                 {% for book in loaned_books %} <!--Pegado cada livro emprestado-->
-                                    <option value="{{book.id}}">{{book.name}}</option>
+                                <option value="{{book.id}}">{{book.name}}</option>
                                 {% endfor %}
 
                             </select>
@@ -148,9 +175,6 @@
 
                         </form>
                     </div>
-
-
-
 
                 </div>
             </div>

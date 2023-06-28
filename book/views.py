@@ -74,7 +74,8 @@ def book_views(request, id):  # passando a request + o id do livro solicitado
 # registrar um livro
 def register_book(request):
     if request.method == "POST":
-        form = RegisterBook(request.POST)
+        form = RegisterBook(request.POST, request.FILES)
+
         # se o formulario for valido
         if form.is_valid():
             form.save()
