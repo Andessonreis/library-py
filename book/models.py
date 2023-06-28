@@ -38,7 +38,6 @@ class Loan(models.Model):
     )
 
     name_borrowed = models.ForeignKey(User, on_delete=models.DO_NOTHING, blank=True, null=True)
-    #name_borrowed = models.CharField(max_length=50, blank=True, null=True)
     loan_date = models.DateTimeField(default=datetime.datetime.now())
     return_date = models.DateTimeField(blank=True, null=True)
     book = models.ForeignKey(Books, on_delete=models.CASCADE)

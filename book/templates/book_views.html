@@ -7,9 +7,9 @@
 
 <style>
     body {
-      background-color: #799bc0;
+        background-color: #799bc0;
     }
-  </style>
+</style>
 
 <div class="container">
     <br>
@@ -22,7 +22,7 @@
             <div class="col-md-6">
                 <div class="form-group">
                     <label for="bookName">Book Name</label>
-                    <input id="bookName" class="form-control" type="text" value="{{ book.name }}"name="bookName">
+                    <input id="bookName" class="form-control" type="text" value="{{ book.name }}" name="bookName">
                 </div>
             </div>
             <div class="col-md-6">
@@ -58,13 +58,15 @@
             <div class="col-md-6">
                 <div class="form-group">
                     <label for="registrationDate">Date of Registration</label>
-                    <input id="registrationDate" class="form-control" type="text" value="{{ book.register_date }}" readonly>
+                    <input id="registrationDate" class="form-control" type="text" value="{{ book.register_date }}"
+                        readonly>
                 </div>
             </div>
-            
+
             <div class="form-group">
                 <div class="form-check">
-                    <input {% if book.borrowed %}checked {% endif %}class="form-check-input" type="checkbox" id="borrowed" name="borrowed" disabled>
+                    <input {% if book.borrowed %}checked {% endif %}class="form-check-input" type="checkbox"
+                        id="borrowed" name="borrowed" disabled>
                     <label class="form-check-label" for="borrowed">
                         {% if book.borrowed %}
                         <span class="badge badge-success">Borrowed</span>
@@ -74,20 +76,20 @@
                     </label>
                 </div>
                 <br>
-            </div>            
+            </div>
 
 
 
-        <div class="form-group">
-            <!-- Botão de exclusão do livro -->
-            <a id="deleteLink" class="btn btn-danger" href="{% url 'delete_book' id=book.id %}">Delete Book</a>
+            <div class="form-group">
+                <!-- Botão de exclusão do livro -->
+                <a id="deleteLink" class="btn btn-danger" href="{% url 'delete_book' id=book.id %}">Delete Book</a>
 
-            <!-- Botão de voltar -->
-            <a href="{% url 'home' %}" type="button" class="btn btn-secondary">Back to List</a>
+                <!-- Botão de voltar -->
+                <a href="{% url 'home' %}" type="button" class="btn btn-secondary">Back to List</a>
 
-            <button type="submit" class="btn btn-success">Save book</button>
+                <button type="submit" class="btn btn-success">Save book</button>
 
-        </div>
+            </div>
     </form>
     <hr>
     <h3>Book Lending History</h3>
@@ -98,6 +100,7 @@
                 <th scope="col">Register date</th>
                 <th scope="col">Return date</th>
                 <th scope="col">Running time</th>
+                <th scope="col">Evaluation</th>
             </tr>
         </thead>
         <tbody>
@@ -107,10 +110,42 @@
                 <td>{{ loan.loan_date }}</td>
                 <td>{{ loan.return_date }}</td>
                 <td>{{ loan.return_date|shows_duration_time:loan.loan_date }}</td>
+
+                {% if loan.evaluation is none %}
+                <td>
+                    <button class="btn btn-info" type="button" data-toggle="modal" data-target="#exampleModal3">Evaluate</button>
+                </td>
+            {% else %}
+                <td>{{ loan.evaluation }}</td>
+            {% endif %}
+            
+
             </tr>
             {% endfor %}
         </tbody>
     </table>
+</div>
+
+<!-- Modal Avaliação-->
+<div class="modal fade" id="exampleModal3" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                ...
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Save changes</button>
+            </div>
+        </div>
+    </div>
 </div>
 
 {% endblock %}
