@@ -103,9 +103,7 @@ Contributions to the Library are welcome! If you have any suggestions, bug repor
 
 ## Support
 
-If you encounter any issues or have any questions, please [open an issue](https://
-
-github.com/Andessonreis/library-py/issues). We're here to help!
+If you encounter any issues or have any questions, please [open an issue](https://github.com/Andessonreis/library-py/issues). We're here to help!
 
 ## Creator
 
