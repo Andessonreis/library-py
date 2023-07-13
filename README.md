@@ -15,7 +15,6 @@
 - [Creator](#creator)
 - [License](#license)
 
-
 ## Description
 
 This repository contains the Library project, a web application developed with Django and Bootstrap. The application is a library management system, allowing users to register, edit, delete, and loan books. The project also includes advanced security features, such as login validations and access control.
